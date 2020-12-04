@@ -13,7 +13,10 @@ const Header = () => {
                 </div>
                 <div>
                     <Link to="/login">
-                        <button>Login / Sign Up</button>
+                        <button>Login</button>
+                    </Link>
+                    <Link to="/signup">
+                        <button>/&nbsp; Sign Up</button>
                     </Link>
                 </div>
             </StyledHeader>
@@ -50,9 +53,10 @@ const StyledHeader = styled.div`
     position: fixed;
     width: 100%;
     height: 50px;
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     align-items: center;
+    background-color: rgba(250, 250, 250, 1);
 
     & > div > a > button {
         color: black;
@@ -74,11 +78,12 @@ const StyledNavigation = styled.div`
     position: fixed;
     width: 100%;
     height: 50px;
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 50px;
+    background-color: rgba(250, 250, 250, 1);
 
     & > div > a > button {
         color: black;
