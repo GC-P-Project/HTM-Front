@@ -3,7 +3,7 @@ import React from 'react';
 const AllDetail = () => {
     return (
         <div>
-            dd
+            dd22
         </div>
     );
 };
