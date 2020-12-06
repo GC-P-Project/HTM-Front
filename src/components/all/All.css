@@ -1,0 +1,37 @@
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css';
+
+.container{
+    padding: 0 30px;
+}
+
+.listView{
+
+}
+
+.backIcon{
+    width: 35px;
+    height: 35px;
+}
+.backIcon:hover{
+    fill: rgb(0, 102, 255);
+}
+
+.btn{
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    font-weight: bolder;
+    background-color: #FFF;
+}
+
+.btnUpper{
+    width: 100%;
+}
+
+.btnDone{
+    width: 420px;
+    height: 55px;
+}
+.btnDone:hover{
+    transition: all 0.5s;
+    background-color: #eee;
+}
