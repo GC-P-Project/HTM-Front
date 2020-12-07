@@ -5,7 +5,42 @@
 }
 
 .listView{
+    width: 100%;
+    border: 1px solid rgba(221, 221, 221, 0.74);
+    border-radius: 20px;
+    box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
+    padding: 14px 0;
+    margin: 15px auto;
+}
+.listView .col-6{
+    padding: 0 13px;
+}
+.listView .title{
+    display: block;
+    display: -webkit-box;
+    max-width: 200px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.listView .desc{
+    display: block;
+    display: -webkit-box;
+    max-width: 200px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .backIcon{
@@ -21,6 +56,10 @@
     border-radius: 15px;
     font-weight: bolder;
     background-color: #FFF;
+}
+.btn:focus{
+    outline: none;
+    box-shadow: none;
 }
 
 .btnUpper{
