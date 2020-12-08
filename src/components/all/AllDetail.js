@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./All.css";
+import "./StarRating.css";
+
 
 const AllDetail = () => {
 
@@ -31,11 +33,25 @@ const AllDetail = () => {
                 </iframe>
             </div>
 
+
             {/** 시청완료 버튼 */}
             <div className="text-center">
                 <button className="btn btnDone">시청완료</button>
             </div>
-        </div>
+
+            {/** Star rating */}
+            <div className="starBox">
+                <p>운동이 마음에 들었나요?</p>
+                <div className="rating">
+                    <input type="radio" name="rating" value="5" id="5" /><label for="5">☆</label>
+                    <input type="radio" name="rating" value="4" id="4" /><label for="4">☆</label>
+                    <input type="radio" name="rating" value="3" id="3" /><label for="3">☆</label>
+                    <input type="radio" name="rating" value="2" id="2" /><label for="2">☆</label>
+                    <input type="radio" name="rating" value="1" id="1" /><label for="1">☆</label>
+                </div>
+            </div>
+
+        </div >
     );
 };
 

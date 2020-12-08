@@ -4,21 +4,26 @@
     padding: 0 30px;
 }
 
+
+/* list View */
 .listView{
     width: 100%;
     border: 1px solid rgba(221, 221, 221, 0.74);
-    border-radius: 20px;
+    border-radius: 18px;
     box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
-    padding: 14px 0;
+    padding: 13px 0;
     margin: 15px auto;
 }
 .listView .col-6{
     padding: 0 13px;
 }
+.listView .thumbnail{
+    width: 193px;
+    height: 109px;
+}
 .listView .title{
     display: block;
     display: -webkit-box;
-    max-width: 200px;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -29,20 +34,13 @@
     margin-bottom: 10px;
 }
 .listView .desc{
-    display: block;
-    display: -webkit-box;
-    max-width: 200px;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
+
+/* goBack */
 .backIcon{
     width: 35px;
     height: 35px;
@@ -51,6 +49,8 @@
     fill: rgb(0, 102, 255);
 }
 
+
+/* button default */
 .btn{
     border: 1px solid #ddd;
     border-radius: 15px;
@@ -62,10 +62,8 @@
     box-shadow: none;
 }
 
-.btnUpper{
-    width: 100%;
-}
 
+/* 시청완료 btn */
 .btnDone{
     width: 420px;
     height: 55px;
