@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/icons/logo.png";
 import styled from "styled-components";
 
 const Header = () => {
     return (
         <>
-            <StyledHeader>
+            <StyledHeader className="HeaderFont">
                 <div>
                     <Link to="/">
-                        <button>HTM</button>
+                        <button><img src={logo}></img></button>
                     </Link>
                 </div>
                 <div>
@@ -47,16 +48,18 @@ const Header = () => {
 };
 
 const StyledHeader = styled.div`
-    border-bottom-style: solid;
-    border-color: lightgray;
-    border-width: 3px;
     position: fixed;
     width: 100%;
     height: 50px;
-    z-index: 1000;
+    z-index: 100;
     display: flex;
     align-items: center;
-    background-color: rgba(250, 250, 250, 1);
+    background-color: white;
+
+    & > div > a > img {
+        color: black;
+        cursor: pointer;
+    }
 
     & > div > a > button {
         color: black;
@@ -78,12 +81,15 @@ const StyledNavigation = styled.div`
     position: fixed;
     width: 100%;
     height: 50px;
-    z-index: 1000;
+    z-index: 100;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 50px;
-    background-color: rgba(250, 250, 250, 1);
+    border-top-style: solid;
+    border-color: lightgray;
+    border-width: 3px;
+    background-color: white;
 
     & > div > a > button {
         color: black;
