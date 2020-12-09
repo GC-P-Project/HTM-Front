@@ -24,7 +24,7 @@ const AllDetail = () => {
             </div>
 
             {/* 영상 */}
-            <div className="embed-responsive embed-responsive-16by9 mb-4">
+            <div className="embed-responsive embed-responsive-16by9 mb-5">
                 <iframe
                     src="https://www.youtube.com/embed/dBtk6T-aWQ4"
                     frameborder="0"
@@ -33,15 +33,9 @@ const AllDetail = () => {
                 </iframe>
             </div>
 
-
-            {/** 시청완료 버튼 */}
-            <div className="text-center">
-                <button className="btn btnDone">시청완료</button>
-            </div>
-
             {/** Star rating */}
-            <div className="starBox">
-                <p>운동이 마음에 들었나요?</p>
+            <div className="starBox mb-3">
+                <p>별점을 기반으로 영상을 추천해 드립니다</p>
                 <div className="rating">
                     <input type="radio" name="rating" value="5" id="5" /><label for="5">☆</label>
                     <input type="radio" name="rating" value="4" id="4" /><label for="4">☆</label>
@@ -49,6 +43,11 @@ const AllDetail = () => {
                     <input type="radio" name="rating" value="2" id="2" /><label for="2">☆</label>
                     <input type="radio" name="rating" value="1" id="1" /><label for="1">☆</label>
                 </div>
+            </div>
+
+            {/** 시청완료 버튼 */}
+            <div className="text-center">
+                <button className="btn btnDone">시청완료</button>
             </div>
 
         </div >

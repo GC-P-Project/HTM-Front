@@ -1,46 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./All.css";
 
 const AllWrap = () => {
+
+
+    // upper menu
+    const typeofexercise = [
+        "전체",
+        "등",
+        "어깨",
+        "가슴",
+        "허리",
+    ];
+    const [menu, setMenu] = useState({
+        num: 0,
+    });
+    const { num } = menu;
+    const onClick = (e) => {
+        const index = e.target.value;
+        setMenu({
+            ...menu,
+            num: index,
+        });
+    };
+
     return (
         <div className="container">
             {/** upper menu */}
-            <div>
-                <ul className="nav nav-pills" role="tablist">
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="pill" href="#qwe">전체</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="pill" href="#asd">등</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="pill" href="#zxc">어깨</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="pill" href="#zxc">가슴</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="pill" href="#zxc">허리</a>
-                    </li>
-                </ul>
-
-                <div className="tab-content">
-                    <div id="qwe" className="container tab-pane active"><br />111</div>
-                    <div id="asd" className="container tab-pane active"><br />222</div>
-                    <div id="zxc" className="container tab-pane fade"><br />333</div>
-                </div>
+            <div className="d-flex justify-content-between upperMenu">
+                <button className="btn" value={0} onClick={onClick}>
+                    전체
+                </button>
+                <button className="btn" value={1} onClick={onClick}>
+                    등
+                </button>
+                <button className="btn" value={2} onClick={onClick}>
+                    어깨
+                </button>
+                <button className="btn" value={3} onClick={onClick}>
+                    가슴
+                </button>
+                <button className="btn" value={4} onClick={onClick}>
+                    허리
+                </button>
             </div>
+
+            {/* <p>{typeofexercise[num]}</p> */}
+
+
+
+
+
 
 
             {/** card listView */}
-            <div className="row listView">
+            <Link to="/all_detail/:idx" className="row listView">
                 {/** thumbnail */}
                 <div className="col-6">
-                    <Link to="/all_detail/:idx">
-                        <img src="https://via.placeholder.com/1600"
-                            className="thumbnail img-fluid"></img>
-                    </Link>
+                    <img src={`${typeofexercise[0][1].img}`}
+                        className="thumbnail img-fluid" />
                 </div>
                 {/** descriptions */}
                 <div className="col-6">
@@ -50,13 +69,16 @@ const AllWrap = () => {
                         영상시간, 운동부위 관련 설명
                     </p>
                 </div>
-            </div>
+            </Link>
+
             {/** example */}
             <div className="row listView">
                 {/** thumbnail */}
                 <div className="col-6">
                     <Link to="/all_detail/:idx">
-                        <img src="https://i.ytimg.com/an_webp/dBtk6T-aWQ4/mqdefault_6s.webp?du=3000&sqp=CMKmuf4F&rs=AOn4CLDC2MVf_PrkCk5BMI4dEzEOw5cnkw"
+                        <img src="https://i.ytimg.com/vi/YSoT3T58QFY/hqdefault.jpg?
+                        sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBxv_
+                        Dkr6LrZuXm_C87FCtn6FckVw"
                             className="thumbnail img-fluid"></img>
                     </Link>
                 </div>

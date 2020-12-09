@@ -3,6 +3,13 @@
 .container{
     padding: 0 30px;
 }
+a{
+    text-decoration: none !important;
+    color: inherit;
+}
+a:hover{
+    color: inherit;
+}
 
 
 /* list View */
@@ -10,7 +17,7 @@
     width: 100%;
     border: 1px solid rgba(221, 221, 221, 0.74);
     border-radius: 18px;
-    box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.151);
     padding: 13px 0;
     margin: 15px auto;
 }
@@ -28,15 +35,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-
     font-size: 14px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin: 3px 0 10px;
 }
 .listView .desc{
     font-size: 12px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 
@@ -46,7 +52,7 @@
     height: 35px;
 }
 .backIcon:hover{
-    fill: rgb(0, 102, 255);
+    fill: #2786c5;
 }
 
 
@@ -59,16 +65,30 @@
 }
 .btn:focus{
     outline: none;
-    box-shadow: none;
+    box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
 }
 
+/* upper menu */
+.upperMenu{
+    margin: 10px auto 30px;
+}
+.upperMenu .btn{
+    width: 80px;
+    height: 40px;
+}
+.upperMenu .btn:hover{
+    transition: all 0.2s;
+    background-color: #2786c5;
+    color: #FFF;
+}
 
 /* 시청완료 btn */
 .btnDone{
     width: 420px;
     height: 55px;
+    box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
 }
 .btnDone:hover{
-    transition: all 0.5s;
-    background-color: #eee;
+    box-shadow: 0 0 5px 0 #2786c5aa;
+    color: #2786c5;
 }

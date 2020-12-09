@@ -3,25 +3,25 @@
     height: 45px;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center
+    justify-content: center;
 }
 
 .rating>input {
-    display: none
+    display: none;
 }
 
 .rating>label {
     position: relative;
     width: 1em;
-    font-size: 6vw;
-    color: #fdff8b;
-    cursor: pointer
+    font-size: 36px;
+    color: #2786c5;
+    cursor: pointer;
 }
 
 .rating>label::before {
     content: "\2605";
     position: absolute;
-    opacity: 0
+    opacity: 0;
 }
 
 .rating>label:hover:before,
@@ -41,14 +41,17 @@
 /* rating box */
 .starBox{
     width: 420px;
-    border: 1px solid rgba(221, 221, 221, 0.74);
-    border-radius: 10px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
     box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
-    padding: 12px 20px;
-    margin: 15px auto;
+    padding: 16px;
+}
+.starBox:hover{
+    box-shadow: 0 0 5px 0 #2786c5aa;
 }
 .starBox p{
     font-weight: bold;
-    font-size: 13px;
-    margin: 11px 24px 7px;
+    font-size: 14px;
+    color: #666;
+    margin: 10px 25px 3px;
 }
