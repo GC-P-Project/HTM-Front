@@ -1,14 +1,8 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
+import { TextField, Typography } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { Avatar, Button, Container, createMuiTheme, Grid, makeStyles, MuiThemeProvider, } from "@material-ui/core";
 
 const backgroundTheme = createMuiTheme({
     palette: {
@@ -17,7 +11,7 @@ const backgroundTheme = createMuiTheme({
         },
     },
     typography: {
-        fontFamily: 'LotteMartDream',
+        fontFamily: "LotteMartDream",
     },
 });
 
@@ -44,6 +38,68 @@ const useStyles = makeStyles((theme) => ({
 function LoginWrap() {
     const classes = useStyles();
 
+    const loginActive = window.sessionStorage.getItem("email");
+    const loginFlag = loginActive !== null ? true : false;
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const changeInput = (e) => {
+        let type = e.target.className;
+        if (type === "email") {
+            setEmail(e.target.value);
+        } else {
+            setPassword(e.target.value);
+        }
+    };
+
+    useEffect(() => {
+        if (loginFlag) {
+            window.history.go(-1);
+        }
+    }, []);
+
+    const enterKey = () => {
+        if (window.event.keyCode === 13) {
+            LoginSubmit();
+        }
+    };
+
+    const sessionSave = (seesionName, sessionData) => {
+        window.sessionStorage.setItem(seesionName, sessionData);
+    };
+
+    const LoginSubmit = async () => {
+        if (email && password !== "") {
+            const response = await fetch("http://54.180.123.156:8080/user/signIn", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            })
+                .then(async (response) => {
+                    const response_json = await response.json();
+                    const member = response_json.user[0];
+                    sessionSave("email", member["email"]);
+                })
+                .then(() => {
+                    alert("로그인에 성공하셨습니다.");
+                    window.history.go(0);
+                })
+                .catch((e) => {
+                    alert("로그인에 실패하셨습니다.");
+                    console.log(e);
+                });
+            return response;
+        } else {
+            alert("Email&Password를 입력해 주세요.");
+        }
+    };
+
     return (
         <MuiThemeProvider theme={backgroundTheme}>
             <Container component="main" maxWidth="xs">
@@ -52,13 +108,13 @@ function LoginWrap() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Login
+                        Sign In
                     </Typography>
-                    <form className={classes.form} noValidate>
-                        <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email" name="email" autoComplete="email" autoFocus />
-                        <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                            Login
+                    <form className={classes.form} noValidate onKeyUp={enterKey}>
+                        <input variant="standard" margin="normal" required fullWidth id="email" label="Email" name="email" autoFocus type="email" autoComplete="email" className={"email"} onChange={changeInput} />
+                        <input variant="standard" margin="normal" required fullWidth id="password" label="Password" name="password" type="password" autoComplete="password" className={"password"} onChange={changeInput} />
+                        <Button variant="contained" type="submit" fullWidth color="primary" className={classes.submit} onClick = {LoginSubmit}>
+                            SIGN IN
                         </Button>
                         <Grid container>
                             <Grid item>

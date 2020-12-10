@@ -9,15 +9,15 @@ const Header = () => {
             <StyledHeader className="HeaderFont">
                 <div>
                     <Link to="/">
-                        <button><img src={logo}></img></button>
+                        <button><img src={logo} alt="HTM logo"></img></button>
                     </Link>
                 </div>
                 <div>
                     <Link to="/login">
-                        <button>Login</button>
+                        <button>SIGN IN</button>
                     </Link>
                     <Link to="/signup">
-                        <button>/&nbsp; Sign Up</button>
+                        <button>/&nbsp; SIGN UP</button>
                     </Link>
                 </div>
             </StyledHeader>

@@ -1,16 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { Avatar, Button, Checkbox, Container, createMuiTheme, FormControlLabel, Grid, makeStyles, MuiThemeProvider, TextField, Typography } from "@material-ui/core";
 
 const backgroundTheme = createMuiTheme({
     palette: {
@@ -19,7 +10,7 @@ const backgroundTheme = createMuiTheme({
         },
     },
     typography: {
-        fontFamily: 'LotteMartDream',
+        fontFamily: "LotteMartDream",
     },
 });
 
@@ -59,7 +50,7 @@ function SignupWrap() {
                     <form className={classes.form} noValidate>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField variant="outlined" required fullWidth id="name" label="Name" name="name" autoComplete="name" />
+                                <TextField variant="standard" required fullWidth id="name" label="Name" name="name" autoComplete="name" />
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="Male" />
@@ -68,28 +59,28 @@ function SignupWrap() {
                                 <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="Female" />
                             </Grid>
                             <Grid item xs={6}>
-                                <TextField variant="outlined" required fullWidth id="height" label="Height (cm)" name="height" autoComplete="height" />
+                                <TextField variant="standard" required fullWidth id="height" label="Height (cm)" name="height" autoComplete="height" />
                             </Grid>
                             <Grid item xs={6}>
-                                <TextField variant="outlined" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" />
+                                <TextField variant="standard" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" InputAdornment="Kg"/>
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField variant="outlined" required fullWidth id="age" label="Age" name="age" autoComplete="age" />
+                                <TextField variant="standard" required fullWidth id="age" label="Age" name="age" autoComplete="age" />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField variant="outlined" required fullWidth id="email" label="Email" name="email" autoComplete="email" />
+                                <TextField variant="standard" required fullWidth id="email" label="Email" name="email" autoComplete="email" />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField variant="outlined" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+                                <TextField variant="standard" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
                             </Grid>
                         </Grid>
                         <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                            Sign Up
+                            SIGN UP
                         </Button>
                         <Grid container justify="flex-end">
                             <Grid item>
                                 <Link to="/login" variant="body2">
-                                    Already have an account? Login
+                                    Already have an account? Sign In
                                 </Link>
                             </Grid>
                         </Grid>
