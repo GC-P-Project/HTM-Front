@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 function LoginWrap() {
     const classes = useStyles();
 
-    const loginActive = window.sessionStorage.getItem("email");
+    const loginActive = window.sessionStorage.getItem("token");
     const loginFlag = loginActive !== null ? true : false;
 
     const [email, setEmail] = useState("");
@@ -83,8 +83,8 @@ function LoginWrap() {
             })
                 .then(async (response) => {
                     const response_json = await response.json();
-                    const member = response_json.user[0];
-                    sessionSave("email", member["email"]);
+                    const member = response_json.token;
+                    sessionSave("token", member);
                 })
                 .then(() => {
                     alert("로그인에 성공하셨습니다.");

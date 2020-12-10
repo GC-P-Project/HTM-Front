@@ -13,7 +13,7 @@ import SignupWrap from "../components/singup/SignupWrap";
 const Content = () => {
     return (
         <div style={{ paddingTop:"120px" }}>
-            <Route exact path="/" component={MainWrap}/>
+            <Route exact path="/" component={MainWrap} />
             <Route path="/all" component={AllWrap}/>
             <Route path="/all_detail/:idx" component={AllDetail}/>
             <Route path="/upper" component={UpperWrap}/>
