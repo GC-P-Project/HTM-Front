@@ -4,22 +4,41 @@ import logo from "../assets/icons/logo.png";
 import styled from "styled-components";
 
 const Header = () => {
+    const loginActive = window.sessionStorage.getItem("token");
+    const loginFlag = loginActive !== null ? true : false;
+
+    const LogoutClick = () => {
+        window.sessionStorage.clear();
+        alert("HTM을 이용해 주셔서 감사합니다.");
+        window.location.reload();
+    }
+
     return (
         <>
             <StyledHeader className="HeaderFont">
                 <div>
                     <Link to="/">
-                        <button><img src={logo} alt="HTM logo"></img></button>
+                        <button>
+                            <img src={logo} alt="HTM logo" style={{ paddingBottom: "5px" }} ></img>
+                        </button>
                     </Link>
                 </div>
-                <div>
-                    <Link to="/login">
-                        <button>SIGN IN</button>
-                    </Link>
-                    <Link to="/signup">
-                        <button>/&nbsp; SIGN UP</button>
-                    </Link>
-                </div>
+                {loginFlag ? (
+                    <div>
+                        <Link to="/">
+                            <button onClick={LogoutClick} >LOGOUT</button>
+                        </Link>
+                    </div>
+                ) : (
+                    <div>
+                        <Link to="/login">
+                            <button>SIGN IN</button>
+                        </Link>
+                        <Link to="/signup">
+                            <button>/&nbsp; SIGN UP</button>
+                        </Link>
+                    </div>
+                )}
             </StyledHeader>
             <StyledNavigation>
                 <div>
@@ -55,6 +74,13 @@ const StyledHeader = styled.div`
     display: flex;
     align-items: center;
     background-color: white;
+    padding-left: 33px;
+    padding-right: 34px;
+
+    & > div:nth-child(2) {
+        width: 300px;
+        text-align: right;
+    }
 
     & > div > a > img {
         color: black;

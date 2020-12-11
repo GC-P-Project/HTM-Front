@@ -7,6 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import lyingIcon from "../../assets/icons/main_lying.svg";
 
 const MainNotlogin = () => {
+    const Allvalue = 75;
+    const Uppservalue = 60;
+    const Lowervalue = 90;
+
     return (
         <StyledMainnotlogin>
             <StyledMainIcon>
@@ -14,13 +18,13 @@ const MainNotlogin = () => {
             </StyledMainIcon>
             <StyledProgressbar>
                 <div>
-                    <span>ALL</span> <ProgressBar variant="blue" animated now={95} />
+                    <span>ALL</span> <ProgressBar variant="blue" animated now={Allvalue} label={`${Allvalue}분`} />
                 </div>
                 <div>
-                    <span>UPPER</span> <ProgressBar variant="blue" animated now={70} />
+                    <span>UPPER</span> <ProgressBar variant="blue" animated now={Uppservalue} label={`${Uppservalue}분`} />
                 </div>
                 <div>
-                    <span>LOWER</span> <ProgressBar variant="blue" animated now={90} />
+                    <span>LOWER</span> <ProgressBar variant="blue" animated now={Lowervalue} label={`${Lowervalue}분`} />
                 </div>
             </StyledProgressbar>
             <StyledMaininformation>
@@ -54,9 +58,11 @@ const StyledMainnotlogin = styled.div`
 
 const StyledMainIcon = styled.div`
     text-align: center;
+    padding-top: 80px;
 `;
 
 const StyledProgressbar = styled.div`
+    padding-top: 30px;
     margin-bottom: 30px;
 
     & > div {

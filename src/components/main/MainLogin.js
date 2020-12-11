@@ -8,12 +8,16 @@ import EditIcon from "../../assets/icons/pen.svg";
 import StandingIcon from "../../assets/icons/main_standing.svg";
 
 const MainLogin = () => {
+    const Allvalue = 280;
+    const Uppservalue = 240;
+    const Lowervalue = 260;
+
     return (
         <>
             <StyledMainlogin>
                 <div>
                     <StyledStandingIcon>
-                        <img src={StandingIcon} alt="Lying down Icon" width="80px"></img>
+                        <img src={StandingIcon} alt="Lying down Icon" width="160px"></img>
                     </StyledStandingIcon>
                     <StyledUserinfo>
                         <StyledUsername>
@@ -33,13 +37,13 @@ const MainLogin = () => {
                         </StyledWatcingtime>
                         <StyledUserProgressbar>
                             <div>
-                                <span>ALL</span> <ProgressBar variant="blue" animated now={95} />
+                                <span>ALL</span> <ProgressBar variant="blue" max="300" animated now={Allvalue} label={`${Allvalue}분`}/>
                             </div>
                             <div>
-                                <span>UPPER</span> <ProgressBar variant="blue" animated now={70} />
+                                <span>UPPER</span> <ProgressBar variant="blue" max="300" animated now={Uppservalue} label={`${Uppservalue}분`}/>
                             </div>
                             <div>
-                                <span>LOWER</span> <ProgressBar variant="blue" animated now={90} />
+                                <span>LOWER</span> <ProgressBar variant="blue" max="300" animated now={Lowervalue} label={`${Lowervalue}분`}/>
                             </div>
                         </StyledUserProgressbar>
                     </StyledUserinfo>
@@ -91,7 +95,11 @@ const StyledMainlogin = styled.div`
     }
 `;
 
-const StyledStandingIcon = styled.div``;
+const StyledStandingIcon = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 const StyledUserinfo = styled.div`
     width: 300px;
