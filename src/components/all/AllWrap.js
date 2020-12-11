@@ -1,8 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./All.css";
 
 const AllWrap = () => {
+
+    const urlData = `upper`
+    const [data, setData] = useState([""]);
+    const [kindData, setKindData] = useState([""]);
+    let loading = true;
+
+    // call API
+    useEffect(() => {
+        fetch(`http://54.180.123.156:8080/HTM/list/${urlData}`)
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(json => {
+                        console.log(json)
+                        setData(json)
+                        setKindData(json[0].kind)
+                        loading = false
+                    })
+                } else {
+                    console.log("Error: E01");
+                }
+            })
+
+    }, [])
 
 
     // upper menu
@@ -25,8 +48,15 @@ const AllWrap = () => {
         });
     };
 
+
+    // loading
+    if (loading) {
+
+    }
+
     return (
         <div className="container">
+
             {/** upper menu */}
             <div className="d-flex justify-content-between upperMenu">
                 <button className="btn" value={0} onClick={onClick}>
@@ -48,49 +78,25 @@ const AllWrap = () => {
 
             {/* <p>{typeofexercise[num]}</p> */}
 
-
-
-
-
-
-
             {/** card listView */}
-            <Link to="/all_detail/:idx" className="row listView">
-                {/** thumbnail */}
-                <div className="col-6">
-                    <img src={`${typeofexercise[0][1].img}`}
-                        className="thumbnail img-fluid" />
-                </div>
-                {/** descriptions */}
-                <div className="col-6">
-                    <p className="title">영상제목</p>
-                    <hr className="my-2" />
-                    <p className="desc">
-                        영상시간, 운동부위 관련 설명
-                    </p>
-                </div>
-            </Link>
 
-            {/** example */}
-            <div className="row listView">
-                {/** thumbnail */}
-                <div className="col-6">
-                    <Link to="/all_detail/:idx">
-                        <img src="https://i.ytimg.com/vi/YSoT3T58QFY/hqdefault.jpg?
-                        sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBxv_
-                        Dkr6LrZuXm_C87FCtn6FckVw"
-                            className="thumbnail img-fluid"></img>
-                    </Link>
-                </div>
-                {/** descriptions */}
-                <div className="col-6">
-                    <p className="title">하체비만 탈출 6분 프로그램 Legs fat burn workout for women하체비만 탈출 6분 프로그램 Legs fat burn workout for women하체비만 탈출 6분 프로그램 Legs fat burn workout for women</p>
-                    <hr className="my-2" />
-                    <p className="desc">
-                        10:02 하체
-                    </p>
-                </div>
-            </div>
+            {data.map((data, index) => (
+                <Link to={`/all_detail/${data.id}`} className="row listView">
+                    {/** thumbnail */}
+                    <div className="col-6">
+                        <img src={`${data.image}`}
+                            className="thumbnail img-fluid" />
+                    </div>
+                    {/** descriptions */}
+                    <div className="col-6">
+                        <p className="title">{data.title}</p>
+                        <hr className="my-2" />
+                        <p className="desc">
+                            {data.time}분 {kindData.kind}
+                        </p>
+                    </div>
+                </Link>
+            ))}
 
         </div>
     );

@@ -89,6 +89,5 @@ a:hover{
     box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
 }
 .btnDone:hover{
-    box-shadow: 0 0 5px 0 #2786c5aa;
-    color: #2786c5;
+    background-color: #f7f7f7;
 }
