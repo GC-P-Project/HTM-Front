@@ -45,8 +45,8 @@ function LoginWrap() {
     const [password, setPassword] = useState("");
 
     const changeInput = (e) => {
-        let type = e.target.className;
-        if (type === "email") {
+        let name = e.target.name;
+        if (name === "email") {
             setEmail(e.target.value);
         } else {
             setPassword(e.target.value);
@@ -113,8 +113,8 @@ function LoginWrap() {
                         Sign In
                     </Typography>
                     <form className={classes.form} noValidate onKeyUp={enterKey}>
-                        <input variant="standard" margin="normal" required fullWidth id="email" label="Email" name="email" autoFocus type="email" autoComplete="email" className={"email"} onChange={changeInput} />
-                        <input variant="standard" margin="normal" required fullWidth id="password" label="Password" name="password" type="password" autoComplete="password" className={"password"} onChange={changeInput} />
+                        <TextField variant="standard" margin="normal" required fullWidth id="email" label="Email" name="email" autoFocus type="email" autoComplete="email" onChange={changeInput} />
+                        <TextField variant="standard" margin="normal" required fullWidth id="password" label="Password" name="password" type="password" autoComplete="password" onChange={changeInput} />
                         <Button variant="contained" type="submit" fullWidth color="primary" className={classes.submit} onClick = {LoginSubmit}>
                             SIGN IN
                         </Button>
