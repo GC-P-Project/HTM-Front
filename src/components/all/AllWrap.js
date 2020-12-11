@@ -9,6 +9,7 @@ const AllWrap = () => {
     const [kindData, setKindData] = useState([""]);
     let loading = true;
 
+
     // call API
     useEffect(() => {
         fetch(`http://54.180.123.156:8080/HTM/list/${urlData}`)
@@ -24,18 +25,11 @@ const AllWrap = () => {
                     console.log("Error: E01");
                 }
             })
-
     }, [])
 
 
     // upper menu
-    const typeofexercise = [
-        "전체",
-        "등",
-        "어깨",
-        "가슴",
-        "허리",
-    ];
+    const typeOfExercise = ["전체", "등", "어깨", "가슴", "허리",];
     const [menu, setMenu] = useState({
         num: 0,
     });
@@ -59,29 +53,18 @@ const AllWrap = () => {
 
             {/** upper menu */}
             <div className="d-flex justify-content-between upperMenu">
-                <button className="btn" value={0} onClick={onClick}>
-                    전체
-                </button>
-                <button className="btn" value={1} onClick={onClick}>
-                    등
-                </button>
-                <button className="btn" value={2} onClick={onClick}>
-                    어깨
-                </button>
-                <button className="btn" value={3} onClick={onClick}>
-                    가슴
-                </button>
-                <button className="btn" value={4} onClick={onClick}>
-                    허리
-                </button>
+                <button className="btn" value={0} onClick={onClick}>전체</button>
+                <button className="btn" value={1} onClick={onClick}>등</button>
+                <button className="btn" value={2} onClick={onClick}>어깨</button>
+                <button className="btn" value={3} onClick={onClick}>가슴</button>
+                <button className="btn" value={4} onClick={onClick}>허리</button>
             </div>
 
-            {/* <p>{typeofexercise[num]}</p> */}
+            <p>{typeOfExercise[num]}</p>
 
             {/** card listView */}
-
             {data.map((data, index) => (
-                <Link to={`/all_detail/${data.id}`} className="row listView">
+                <Link to={`/all_detail/${data.id}`} className="row listView" key={index}>
                     {/** thumbnail */}
                     <div className="col-6">
                         <img src={`${data.image}`}
@@ -97,7 +80,7 @@ const AllWrap = () => {
                     </div>
                 </Link>
             ))}
-
+s
         </div>
     );
 };
