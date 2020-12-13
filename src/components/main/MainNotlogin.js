@@ -97,6 +97,8 @@ const StyledMainbutton = styled.div`
 
     & > a > button {
         width: 200px;
+        background-color: #015cee;
+        border-radius: 5px;
     }
 
     & > a:nth-child(2) > button {
