@@ -18,15 +18,26 @@ a:hover{
     border: 1px solid rgba(221, 221, 221, 0.74);
     border-radius: 18px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.151);
-    padding: 13px 0;
-    margin: 15px auto;
+    padding: 15px 0;
+    margin: 20px auto;
+}
+.listViewAni{
+    animation: example 1s;
+}
+@keyframes example {
+    0% {opacity: 0;}
+    35% {opacity: 0;}
+    100% {opacity: 1;}
 }
 .listView .col-6{
     padding: 0 13px;
+    max-height: 107px;
+    overflow: hidden;
 }
 .listView .thumbnail{
     width: 193px;
-    height: 109px;
+    position: relative;
+    top: -18.5px;
 }
 .listView .title{
     display: block;
@@ -77,14 +88,14 @@ a:hover{
     height: 40px;
 }
 .upperMenu .btn:hover{
-    transition: all 0.2s;
+    transition: all 0.3s;
     background-color: #2786c5;
     color: #FFF;
 }
 
 /* 시청완료 btn */
 .btnDone{
-    width: 420px;
+    width: 100%;
     height: 55px;
     box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
 }

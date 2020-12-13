@@ -27,17 +27,17 @@ const Header = () => {
                     </Link>
                 </div>
                 <div>
-                    <Link to="/all">
+                    <Link to="/list/all">
                         <button>ALL</button>
                     </Link>
                 </div>
                 <div>
-                    <Link to="/upper">
+                    <Link to="/list/upper">
                         <button>UPPER</button>
                     </Link>
                 </div>
                 <div>
-                    <Link to="/lower">
+                    <Link to="/list/lower">
                         <button>LOWER</button>
                     </Link>
                 </div>
