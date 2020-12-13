@@ -1,27 +1,18 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { Avatar, Button, Container, createMuiTheme, Grid, makeStyles, MuiThemeProvider, TextField, Typography } from "@material-ui/core";
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {"Copyright © "}
-            GC HTM {new Date().getFullYear()}
-            {"."}
-        </Typography>
-    );
-}
+const backgroundTheme = createMuiTheme({
+    palette: {
+        background: {
+            default: "white",
+        },
+    },
+    typography: {
+        fontFamily: "LotteMartDream",
+    },
+});
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -32,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.primary.main,
     },
     form: {
         width: "100%",
@@ -46,59 +37,130 @@ const useStyles = makeStyles((theme) => ({
 function SignupWrap() {
     const classes = useStyles();
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [age, setAge] = useState("");
+    const [name, setName] = useState("");
+    const [height, setHeight] = useState("");
+    const [weight, setWeight] = useState("");
+    const [gender, setGender] = useState("");
+    const [addressType, setAddresstype] = useState("NORMAL");
+
+    const signOk = async () => {
+        const response = await fetch("http://54.180.123.156:8080/user/signUp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                age: age,
+                name: name,
+                height: height,
+                weight: weight,
+                gender: gender,
+                addressType: addressType,
+            }),
+        })
+            .then(async (response) => {
+                alert("회원가입이 완료되었습니다.");
+            })
+            .catch((e) => {
+                alert("회원가입에 실패하였습니다.");
+            });
+    };
+
+    const changeInput = (e) => {
+        let name = e.target.name;
+        if (name === "email") {
+            setEmail(e.target.value);
+        } else if (name === "password") {
+            setPassword(e.target.value);
+        } else if (name === "name") {
+            setName(e.target.value);
+        } else if (name === "age") {
+            setAge(e.target.value);
+        } else if (name === "height") {
+            setHeight(e.target.value);
+        } else if (name === "weight") {
+            setWeight(e.target.value);
+        } else if (name === "gender") {
+            setGender(e.target.value);
+        }
+    };
+
+    const dataSubmit = () => {
+        checkSignup(email, password, name, age, height, weight, gender);
+    };
+
+    const checkSignup = (email, password, name, age, height, weight, gender) => {
+        if (!email) {
+            alert("Email을 입력해 주세요.");
+        } else {
+            signOk();
+            window.history.go(-1);
+        }
+    };
+
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign Up
-                </Typography>
-                <form className={classes.form} noValidate>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField variant="outlined" required fullWidth id="name" label="Name" name="name" autoComplete="name" />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="Male" />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="Female" />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField variant="outlined" required fullWidth id="height" label="Height (cm)" name="height" autoComplete="height" />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField variant="outlined" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField variant="outlined" required fullWidth id="age" label="Age" name="age" autoComplete="age" />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField variant="outlined" required fullWidth id="email" label="Email" name="email" autoComplete="email" />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField variant="outlined" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
-                        </Grid>
-                    </Grid>
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+        <MuiThemeProvider theme={backgroundTheme}>
+            <Container component="main" maxWidth="xs">
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
                         Sign Up
-                    </Button>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link to="/login" variant="body2">
-                                Already have an account? Login
-                            </Link>
+                    </Typography>
+                    <form className={classes.form} noValidate>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField variant="standard" required fullWidth id="email" label="Email" name="email" autoComplete="email" onChange={changeInput} />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="standard"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    onChange={changeInput}
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField variant="standard" required fullWidth id="name" label="Name" name="name" autoComplete="name" onChange={changeInput} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField variant="standard" required fullWidth id="age" label="Age" name="age" autoComplete="age" onChange={changeInput} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField variant="standard" required fullWidth id="height" label="Height (cm)" name="height" autoComplete="height" onChange={changeInput} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField variant="standard" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" InputAdornment="Kg" onChange={changeInput} />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField variant="standard" required fullWidth id="gender" label="MALE / FEMALE" name="gender" autoComplete="gender" />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
-        </Container>
+                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={dataSubmit}>
+                            SIGN UP
+                        </Button>
+                        <Grid container justify="flex-end">
+                            <Grid item>
+                                <Link to="/login" variant="body2">
+                                    Already have an account? Sign In
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </form>
+                </div>
+            </Container>
+        </MuiThemeProvider>
     );
 }
 

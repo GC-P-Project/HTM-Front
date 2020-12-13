@@ -1,27 +1,19 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+import { TextField, Typography } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import { Avatar, Button, Container, createMuiTheme, Grid, makeStyles, MuiThemeProvider, } from "@material-ui/core";
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {"Copyright © "}
-            GC HTM {new Date().getFullYear()}
-            {"."}
-        </Typography>
-    );
-}
+const backgroundTheme = createMuiTheme({
+    palette: {
+        background: {
+            default: "white",
+        },
+    },
+    typography: {
+        fontFamily: "LotteMartDream",
+    },
+});
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -32,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.primary.main,
     },
     form: {
         width: "100%",
@@ -46,35 +38,95 @@ const useStyles = makeStyles((theme) => ({
 function LoginWrap() {
     const classes = useStyles();
 
+    const loginActive = window.sessionStorage.getItem("token");
+    const loginFlag = loginActive !== null ? true : false;
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const changeInput = (e) => {
+        let name = e.target.name;
+        if (name === "email") {
+            setEmail(e.target.value);
+        } else {
+            setPassword(e.target.value);
+        }
+    };
+
+    useEffect(() => {
+        if (loginFlag) {
+            window.history.go(-1);
+        }
+    }, []);
+
+    const enterKey = () => {
+        if (window.event.keyCode === 13) {
+            LoginSubmit();
+        }
+    };
+
+    const sessionSave = (seesionName, sessionData) => {
+        window.sessionStorage.setItem(seesionName, sessionData);
+    };
+
+    const LoginSubmit = async () => {
+        if (email && password !== "") {
+            const response = await fetch("http://54.180.123.156:8080/user/signIn", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            })
+                .then(async (response) => {
+                    const response_json = await response.json();
+                    const member = response_json.token;
+                    sessionSave("token", member);
+                })
+                .then(() => {
+                    alert("로그인에 성공하셨습니다.");
+                    window.history.go(0);
+                })
+                .catch((e) => {
+                    alert("로그인에 실패하셨습니다.");
+                    console.log(e);
+                });
+            return response;
+        } else {
+            alert("Email&Password를 입력해 주세요.");
+        }
+    };
+
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Login
-                </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email" name="email" autoComplete="email" autoFocus />
-                    <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                        Login
-                    </Button>
-                    <Grid container>
-                        <Grid item>
-                            <Link to="/signup" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
+        <MuiThemeProvider theme={backgroundTheme}>
+            <Container component="main" maxWidth="xs">
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign In
+                    </Typography>
+                    <form className={classes.form} noValidate onKeyUp={enterKey}>
+                        <TextField variant="standard" margin="normal" required fullWidth id="email" label="Email" name="email" autoFocus type="email" autoComplete="email" onChange={changeInput} />
+                        <TextField variant="standard" margin="normal" required fullWidth id="password" label="Password" name="password" type="password" autoComplete="password" onChange={changeInput} />
+                        <Button variant="contained" type="submit" fullWidth color="primary" className={classes.submit} onClick = {LoginSubmit}>
+                            SIGN IN
+                        </Button>
+                        <Grid container>
+                            <Grid item>
+                                <Link to="/signup" variant="body2">
+                                    {"Don't have an account? Sign Up"}
+                                </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-            <Box mt={8}>
-                <Copyright />
-            </Box>
-        </Container>
+                    </form>
+                </div>
+            </Container>
+        </MuiThemeProvider>
     );
 }
 
