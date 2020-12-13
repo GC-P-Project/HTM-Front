@@ -83,8 +83,13 @@ function LoginWrap() {
             })
                 .then(async (response) => {
                     const response_json = await response.json();
-                    const member = response_json.token;
+                    const member = response_json.token.token;
                     sessionSave("token", member);
+                    const heightinfo = response_json.user.height;
+                    const weightinfo = response_json.user.weight;
+                    const upperinfo = response_json.user.upperTime;
+                    const lowerinfo = response_json.user.lowerTime;
+                    const allinfo = response_json.user.allTime;
                 })
                 .then(() => {
                     alert("로그인에 성공하셨습니다.");
