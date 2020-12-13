@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { TextField, Typography } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { Avatar, Button, Container, createMuiTheme, Grid, makeStyles, MuiThemeProvider, } from "@material-ui/core";
+import { Avatar, Button, Container, createMuiTheme, Grid, makeStyles, MuiThemeProvider } from "@material-ui/core";
 
 const backgroundTheme = createMuiTheme({
     palette: {
@@ -84,12 +84,19 @@ function LoginWrap() {
                 .then(async (response) => {
                     const response_json = await response.json();
                     const member = response_json.token.token;
-                    sessionSave("token", member);
+                    const nameinfo = response_json.user.name;
                     const heightinfo = response_json.user.height;
                     const weightinfo = response_json.user.weight;
                     const upperinfo = response_json.user.upperTime;
                     const lowerinfo = response_json.user.lowerTime;
                     const allinfo = response_json.user.allTime;
+                    sessionSave("token", member);
+                    sessionSave("nameinfo", nameinfo);
+                    sessionSave("heightinfo", heightinfo);
+                    sessionSave("weightinfo", weightinfo);
+                    sessionSave("/list/upper", upperinfo);
+                    sessionSave("/list/lower", lowerinfo);
+                    sessionSave("/list/all", allinfo);
                 })
                 .then(() => {
                     alert("로그인에 성공하셨습니다.");
@@ -117,8 +124,19 @@ function LoginWrap() {
                     </Typography>
                     <form className={classes.form} noValidate onKeyUp={enterKey}>
                         <TextField variant="standard" margin="normal" required fullWidth id="email" label="Email" name="email" autoFocus type="email" autoComplete="email" onChange={changeInput} />
-                        <TextField variant="standard" margin="normal" required fullWidth id="password" label="Password" name="password" type="password" autoComplete="password" onChange={changeInput} />
-                        <Button variant="contained" type="submit" fullWidth color="primary" className={classes.submit} onClick = {LoginSubmit}>
+                        <TextField
+                            variant="standard"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="password"
+                            label="Password"
+                            name="password"
+                            type="password"
+                            autoComplete="password"
+                            onChange={changeInput}
+                        />
+                        <Button variant="contained" type="submit" fullWidth color="primary" className={classes.submit} onClick={LoginSubmit}>
                             SIGN IN
                         </Button>
                         <Grid container>

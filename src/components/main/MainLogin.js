@@ -8,10 +8,43 @@ import EditIcon from "../../assets/icons/pen.svg";
 import StandingIcon from "../../assets/icons/main_standing.svg";
 
 const MainLogin = () => {
-    const Allvalue = 280;
-    const Uppservalue = 240;
-    const Lowervalue = 260;
+    const nameinfo = window.sessionStorage.getItem("nameinfo");
+    const heightinfo = window.sessionStorage.getItem("heightinfo");
+    const weightinfo = window.sessionStorage.getItem("weightinfo");
+    const upperinfo = window.sessionStorage.getItem("/list/upper");
+    const lowerinfo = window.sessionStorage.getItem("/list/lower");
+    const allinfo = window.sessionStorage.getItem("/list/all");
 
+    const uppervalue =  window.sessionStorage.key(0);
+    const lowervalue =  window.sessionStorage.key(3);
+    const allvalue =  window.sessionStorage.key(6);
+
+    const uppername = "[ 상체 ]";
+    const lowername = "[ 하체 ]";
+    const allname = "[ 전신 ]";
+
+    const timevalue = ({ upperinfo, lowerinfo, allinfo }) => {
+        const workoutvalue = (( lowerinfo > upperinfo ) && (allinfo > upperinfo) ? upperinfo : (lowerinfo > allinfo ? allinfo : lowerinfo));
+        if (workoutvalue === upperinfo) {
+            return uppervalue;
+        } else if (workoutvalue === lowerinfo) {
+            return lowervalue;
+        } else if (workoutvalue === allinfo) {
+            return allvalue;
+        }
+    }
+
+    const recommandvalue = ({ upperinfo, lowerinfo, allinfo }) => {
+        const workoutvalue = (( lowerinfo > upperinfo ) && (allinfo > upperinfo) ? upperinfo : (lowerinfo > allinfo ? allinfo : lowerinfo));
+        if (workoutvalue === upperinfo) {
+            return uppername;
+        } else if (workoutvalue === lowerinfo) {
+            return lowername;
+        } else if (workoutvalue === allinfo) {
+            return allname;
+        }
+    }
+    
     return (
         <>
             <StyledMainlogin>
@@ -21,40 +54,40 @@ const MainLogin = () => {
                     </StyledStandingIcon>
                     <StyledUserinfo>
                         <StyledUsername>
-                            <p>김민지 회원님</p>
+                            <p>{nameinfo} 회원님</p>
                         </StyledUsername>
                         <StyledUserData>
                             <div>
-                                <p>키: 170cm</p>
-                                <p>몸무게: 50kg</p>
+                                <p>키: {heightinfo}cm</p>
+                                <p>몸무게: {weightinfo}kg</p>
                             </div>
                             <div>
                                 <img src={EditIcon} alt="User Data Edit Icon" width="60px"></img>
                             </div>
                         </StyledUserData>
                         <StyledWatcingtime>
-                            <p>부위 별 운동 영상 시청 시간 (분)</p>
+                            <p>부위 별 운동 영상 시청 시간</p>
                         </StyledWatcingtime>
                         <StyledUserProgressbar>
                             <div>
-                                <span>ALL</span> <ProgressBar variant="blue" max="300" animated now={Allvalue} label={`${Allvalue}분`}/>
+                                <span>ALL</span> <ProgressBar variant="blue" max="300" animated now={allinfo} label={`${allinfo}분`}/>
                             </div>
                             <div>
-                                <span>UPPER</span> <ProgressBar variant="blue" max="300" animated now={Uppservalue} label={`${Uppservalue}분`}/>
+                                <span>UPPER</span> <ProgressBar variant="blue" max="300" animated now={upperinfo} label={`${upperinfo}분`}/>
                             </div>
                             <div>
-                                <span>LOWER</span> <ProgressBar variant="blue" max="300" animated now={Lowervalue} label={`${Lowervalue}분`}/>
+                                <span>LOWER</span> <ProgressBar variant="blue" max="300" animated now={lowerinfo} label={`${lowerinfo}분`}/>
                             </div>
                         </StyledUserProgressbar>
                     </StyledUserinfo>
                 </div>
                 <StyledRecommandTitle>
                     <p>
-                        오늘은 <strong>[ 상체 ]</strong> 운동을 하는 게 어떨까요?
+                        오늘은 <strong>{recommandvalue({upperinfo, lowerinfo, allinfo})}</strong> 운동을 하는 게 어떨까요?
                     </p>
                 </StyledRecommandTitle>
                 <StyledRecommandButton>
-                    <Link to="/">
+                    <Link to={timevalue({upperinfo, lowerinfo, allinfo})}>
                         <Button variant="outline-primary" size="lg">
                             부족한 운동 부위 추천 영상 보러 가기
                         </Button>
