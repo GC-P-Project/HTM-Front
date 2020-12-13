@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { Avatar, Button, Checkbox, Container, createMuiTheme, FormControlLabel, Grid, makeStyles, MuiThemeProvider, TextField, Typography } from "@material-ui/core";
+import { Avatar, Button, Container, createMuiTheme, Grid, makeStyles, MuiThemeProvider, TextField, Typography } from "@material-ui/core";
 
 const backgroundTheme = createMuiTheme({
     palette: {
@@ -37,6 +37,72 @@ const useStyles = makeStyles((theme) => ({
 function SignupWrap() {
     const classes = useStyles();
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [age, setAge] = useState("");
+    const [name, setName] = useState("");
+    const [height, setHeight] = useState("");
+    const [weight, setWeight] = useState("");
+    const [gender, setGender] = useState("");
+    const [addressType, setAddresstype] = useState("NORMAL");
+
+    const signOk = async () => {
+        const response = await fetch("http://54.180.123.156:8080/user/signUp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                age: age,
+                name: name,
+                height: height,
+                weight: weight,
+                gender: gender,
+                addressType: addressType,
+            }),
+        })
+            .then(async (response) => {
+                alert("회원가입이 완료되었습니다.");
+            })
+            .catch((e) => {
+                alert("회원가입에 실패하였습니다.");
+            });
+    };
+
+    const changeInput = (e) => {
+        let name = e.target.name;
+        if (name === "email") {
+            setEmail(e.target.value);
+        } else if (name === "password") {
+            setPassword(e.target.value);
+        } else if (name === "name") {
+            setName(e.target.value);
+        } else if (name === "age") {
+            setAge(e.target.value);
+        } else if (name === "height") {
+            setHeight(e.target.value);
+        } else if (name === "weight") {
+            setWeight(e.target.value);
+        } else if (name === "gender") {
+            setGender(e.target.value);
+        }
+    };
+
+    const dataSubmit = () => {
+        checkSignup(email, password, name, age, height, weight, gender);
+    };
+
+    const checkSignup = (email, password, name, age, height, weight, gender) => {
+        if (!email) {
+            alert("Email을 입력해 주세요.");
+        } else {
+            signOk();
+            window.history.go(-1);
+        }
+    };
+
     return (
         <MuiThemeProvider theme={backgroundTheme}>
             <Container component="main" maxWidth="xs">
@@ -50,31 +116,38 @@ function SignupWrap() {
                     <form className={classes.form} noValidate>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField variant="standard" required fullWidth id="name" label="Name" name="name" autoComplete="name" />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="Male" />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="Female" />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField variant="standard" required fullWidth id="height" label="Height (cm)" name="height" autoComplete="height" />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField variant="standard" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" InputAdornment="Kg"/>
+                                <TextField variant="standard" required fullWidth id="email" label="Email" name="email" autoComplete="email" onChange={changeInput} />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField variant="standard" required fullWidth id="age" label="Age" name="age" autoComplete="age" />
+                                <TextField
+                                    variant="standard"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    onChange={changeInput}
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField variant="standard" required fullWidth id="name" label="Name" name="name" autoComplete="name" onChange={changeInput} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField variant="standard" required fullWidth id="age" label="Age" name="age" autoComplete="age" onChange={changeInput} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField variant="standard" required fullWidth id="height" label="Height (cm)" name="height" autoComplete="height" onChange={changeInput} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField variant="standard" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" InputAdornment="Kg" onChange={changeInput} />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField variant="standard" required fullWidth id="email" label="Email" name="email" autoComplete="email" />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField variant="standard" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+                                <TextField variant="standard" required fullWidth id="gender" label="MALE / FEMALE" name="gender" autoComplete="gender" />
                             </Grid>
                         </Grid>
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={dataSubmit}>
                             SIGN UP
                         </Button>
                         <Grid container justify="flex-end">

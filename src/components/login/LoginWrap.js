@@ -83,9 +83,7 @@ function LoginWrap() {
             })
                 .then(async (response) => {
                     const response_json = await response.json();
-                    console.log(response_json);
                     const member = response_json.token;
-                    console.log(member);
                     sessionSave("token", member);
                 })
                 .then(() => {
