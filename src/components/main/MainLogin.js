@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Highcharts from "highcharts/highstock";
+import LineChart from "highcharts-react-official";
 import EditIcon from "../../assets/icons/pen.svg";
 import StandingIcon from "../../assets/icons/main_standing.svg";
 
@@ -11,20 +13,20 @@ const MainLogin = () => {
     const nameinfo = window.sessionStorage.getItem("nameinfo");
     const heightinfo = window.sessionStorage.getItem("heightinfo");
     const weightinfo = window.sessionStorage.getItem("weightinfo");
-    const upperinfo = window.sessionStorage.getItem("/list/upper");
-    const lowerinfo = window.sessionStorage.getItem("/list/lower");
-    const allinfo = window.sessionStorage.getItem("/list/all");
+    const upperinfo = window.sessionStorage.getItem("upperinfo");
+    const lowerinfo = window.sessionStorage.getItem("lowerinfo");
+    const allinfo = window.sessionStorage.getItem("allinfo");
 
-    const uppervalue =  window.sessionStorage.key(0);
-    const lowervalue =  window.sessionStorage.key(3);
-    const allvalue =  window.sessionStorage.key(6);
+    const uppervalue = "/list/upper";
+    const lowervalue = "/list/lower";
+    const allvalue = "/list/all";
 
     const uppername = "[ 상체 ]";
     const lowername = "[ 하체 ]";
     const allname = "[ 전신 ]";
 
     const timevalue = ({ upperinfo, lowerinfo, allinfo }) => {
-        const workoutvalue = (( lowerinfo > upperinfo ) && (allinfo > upperinfo) ? upperinfo : (lowerinfo > allinfo ? allinfo : lowerinfo));
+        const workoutvalue = lowerinfo > upperinfo && allinfo > upperinfo ? upperinfo : lowerinfo > allinfo ? allinfo : lowerinfo;
         if (workoutvalue === upperinfo) {
             return uppervalue;
         } else if (workoutvalue === lowerinfo) {
@@ -32,10 +34,10 @@ const MainLogin = () => {
         } else if (workoutvalue === allinfo) {
             return allvalue;
         }
-    }
+    };
 
     const recommandvalue = ({ upperinfo, lowerinfo, allinfo }) => {
-        const workoutvalue = (( lowerinfo > upperinfo ) && (allinfo > upperinfo) ? upperinfo : (lowerinfo > allinfo ? allinfo : lowerinfo));
+        const workoutvalue = lowerinfo > upperinfo && allinfo > upperinfo ? upperinfo : lowerinfo > allinfo ? allinfo : lowerinfo;
         if (workoutvalue === upperinfo) {
             return uppername;
         } else if (workoutvalue === lowerinfo) {
@@ -43,14 +45,75 @@ const MainLogin = () => {
         } else if (workoutvalue === allinfo) {
             return allname;
         }
-    }
-    
+    };
+
+    const options = {
+        chart: {
+            type: "line",
+            backgroundColor: "#458bfc",
+            borderRadius: 10,
+            style: {
+                fontFamily: "LotteMartDream",
+                color: "white",
+            },
+        },
+        colors: ["white"],
+        credits: {
+            enabled: false,
+        },
+        title: {
+            text: "지난주 요일별 운동 시간",
+            style: {
+                fontFamily: "LotteMartDream",
+                color: "#458bfc",
+            },
+        },
+        xAxis: {
+            categories: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
+            labels: {
+                style: {
+                    fontFamily: "LotteMartDream",
+                    color: "white",
+                },
+            },
+            title: {
+                style: {
+                    fontFamily: "LotteMartDream",
+                    color: "white",
+                },
+            },
+        },
+        yAxis: {
+            labels: {
+                style: {
+                    fontFamily: "LotteMartDream",
+                    color: "white",
+                },
+            },
+            title: {
+                text: "운동 시간",
+                style: {
+                    fontFamily: "LotteMartDream",
+                    color: "black",
+                },
+            },
+        },
+        series: [
+            {
+                name: "요일별 운동 시간",
+                data: [50, 35, 45, 50, 45, 40, 55],
+            },
+        ],
+    };
+
     return (
         <>
             <StyledMainlogin>
                 <div>
                     <StyledStandingIcon>
-                        <img src={StandingIcon} alt="Lying down Icon" width="160px"></img>
+                        <div>함께 운동한 지</div>
+                        <div>28일</div>
+                        <img src={StandingIcon} alt="Lying down Icon" width="130px"></img>
                     </StyledStandingIcon>
                     <StyledUserinfo>
                         <StyledUsername>
@@ -70,24 +133,30 @@ const MainLogin = () => {
                         </StyledWatcingtime>
                         <StyledUserProgressbar>
                             <div>
-                                <span>ALL</span> <ProgressBar variant="blue" max="300" animated now={allinfo} label={`${allinfo}분`}/>
+                                <span>ALL</span> <ProgressBar variant="blue" max="300" animated now={allinfo} label={`${allinfo}분`} />
                             </div>
                             <div>
-                                <span>UPPER</span> <ProgressBar variant="blue" max="300" animated now={upperinfo} label={`${upperinfo}분`}/>
+                                <span>UPPER</span> <ProgressBar variant="blue" max="300" animated now={upperinfo} label={`${upperinfo}분`} />
                             </div>
                             <div>
-                                <span>LOWER</span> <ProgressBar variant="blue" max="300" animated now={lowerinfo} label={`${lowerinfo}분`}/>
+                                <span>LOWER</span> <ProgressBar variant="blue" max="300" animated now={lowerinfo} label={`${lowerinfo}분`} />
                             </div>
                         </StyledUserProgressbar>
                     </StyledUserinfo>
                 </div>
+                <StyledGraphtitle>
+                    <p>지난주 요일별 운동 시간</p>
+                </StyledGraphtitle>
+                <StyledLastweekgraph>
+                    <LineChart highcharts={Highcharts} options={options}></LineChart>
+                </StyledLastweekgraph>
                 <StyledRecommandTitle>
                     <p>
-                        오늘은 <strong>{recommandvalue({upperinfo, lowerinfo, allinfo})}</strong> 운동을 하는 게 어떨까요?
+                        오늘은 <span style={{ color: "#015cee" }}>{recommandvalue({ upperinfo, lowerinfo, allinfo })}</span> 운동을 하는 게 어떨까요?
                     </p>
                 </StyledRecommandTitle>
                 <StyledRecommandButton>
-                    <Link to={timevalue({upperinfo, lowerinfo, allinfo})}>
+                    <Link to={timevalue({ upperinfo, lowerinfo, allinfo })}>
                         <Button variant="outline-primary" size="lg">
                             부족한 운동 부위 추천 영상 보러 가기
                         </Button>
@@ -118,6 +187,7 @@ const StyledMainlogin = styled.div`
     background-color: #f0f7fe;
     border-radius: 50px;
     padding-bottom: 40px;
+    margin: 10px;
 
     & > div {
         display: flex;
@@ -129,9 +199,33 @@ const StyledMainlogin = styled.div`
 `;
 
 const StyledStandingIcon = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    text-align: center;
+
+    & > div:nth-child(1) {
+        text-align: center;
+        border-radius: 50px;
+        background-color: white;
+        height: 40px;
+        line-height: 40px;
+        font-weight: 900;
+    }
+
+    & > div:nth-child(2) {
+        margin-top: 10px;
+        border-radius: 10px;
+        background-color: #bdd5fe;
+        height: 115px;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+    }
+
+    & > img {
+        margin-top: 70px;
+    }
 `;
 
 const StyledUserinfo = styled.div`
@@ -144,6 +238,7 @@ const StyledUsername = styled.div`
     background-color: white;
     height: 40px;
     line-height: 40px;
+    font-weight: 900;
 `;
 
 const StyledUserData = styled.div`
@@ -167,6 +262,7 @@ const StyledWatcingtime = styled.div`
     height: 40px;
     line-height: 40px;
     margin-top: 10px;
+    font-weight: 900;
 `;
 
 const StyledUserProgressbar = styled.div`
@@ -198,8 +294,29 @@ const StyledUserProgressbar = styled.div`
     }
 `;
 
+const StyledGraphtitle = styled.div`
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: white;
+    height: 40px;
+    line-height: 40px;
+    width: 450px;
+    font-weight: 900;
+`;
+
+const StyledLastweekgraph = styled.div`
+    margin-top: 10px;
+
+    & > div {
+        width: 450px;
+        height: 250px;
+        border-radius: 10px;
+    }
+`;
 const StyledRecommandTitle = styled.div`
     margin-top: 30px;
+    font-weight: 900;
 `;
 
 const StyledRecommandButton = styled.div`
