@@ -91,15 +91,12 @@ function LoginWrap() {
                     sessionSave("nameinfo", nameinfo);
                     sessionSave("heightinfo", heightinfo);
                     sessionSave("weightinfo", weightinfo);
-                    console.log(response);
                 })
                 .then(() => {
-                    console.log(response);
                     alert("로그인에 성공하셨습니다.");
                     window.history.go(0);
                 })
                 .catch((e) => {
-                    console.log(e);
                     alert("로그인에 실패하셨습니다.");
                     console.log(e);
                 });
