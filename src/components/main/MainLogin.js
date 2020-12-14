@@ -200,9 +200,9 @@ const MainLogin = () => {
                         width="400"
                         height="220"
                         src="https://www.youtube.com/embed/54tTYO-vU2E"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
                         title="YouTube"
                     ></iframe>
                 </StyledTodayInfo>

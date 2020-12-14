@@ -127,17 +127,7 @@ function SignupWrap() {
                                 <TextField variant="standard" required fullWidth id="email" label="Email" name="email" autoComplete="email" onChange={changeInput} />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
-                                    variant="standard"
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    onChange={changeInput}
-                                />
+                                <TextField variant="standard" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" onChange={changeInput} />
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField variant="standard" required fullWidth id="name" label="Name" name="name" autoComplete="name" onChange={changeInput} />
@@ -149,7 +139,7 @@ function SignupWrap() {
                                 <TextField variant="standard" required fullWidth id="height" label="Height (cm)" name="height" autoComplete="height" onChange={changeInput} />
                             </Grid>
                             <Grid item xs={4}>
-                                <TextField variant="standard" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" InputAdornment="Kg" onChange={changeInput} />
+                                <TextField variant="standard" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" inputadornment="Kg" onChange={changeInput} />
                             </Grid>
                             <Grid item xs={4}>
                                 <TextField variant="standard" required fullWidth id="gender" label="MALE/FEMALE" name="gender" autoComplete="gender" onChange={changeInput} />
