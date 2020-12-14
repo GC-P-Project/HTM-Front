@@ -101,5 +101,5 @@ a:hover{
 }
 .btnDone:hover{
     background-color: #2786c50f;
-    transition: ease-in 0.3s;
+    transition: ease-in 0.1s;
 }

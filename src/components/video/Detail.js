@@ -5,47 +5,19 @@ import "./StarRating.css";
 const Detail = (props) => {
     const urlData = props.match.params.idx
     const [data, setData] = useState([""]);
-
-    const loginActive = window.sessionStorage.getItem("token");
-    const loginFlag = (loginActive !== null) ? true : false;
-
-    console.log(loginActive)
+    const userToken = window.sessionStorage.getItem("token");
+    const loginFlag = (userToken !== null) ? true : false;
+    const [ratingData, setRatingData] = useState(3);
 
 
-    // Star Rating Data
-    const [ratingData, setRatingData] = useState({ num: 3, });
-    const { num } = ratingData;
-    const starRatingData = (e) => {
-        const index = e.target.value;
-        setRatingData({
-            ...ratingData,
-            num: index,
-        });
-    };
-
-
-    // Video Complete
-    const videoComplete = async (ratingData) => {
-        const response = await fetch("http://54.180.123.156:8080/user/signIn333", {
-            method: "POST",
-            headers: { "Content-Type": "application/json", },
-            body: JSON.stringify({
-                // token header? loginActive?
-            }),
-        })
-            .then(() => {
-                // disable button?
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-        return response;
-    };
+    useEffect(() => {
+        fetchData()
+    }, [])
 
 
     // call API
-    useEffect(() => {
-        fetch(`http://54.180.123.156:8080/HTM/video/${urlData}`)
+    const fetchData = async () => {
+        await fetch(`http://54.180.123.156:8080/HTM/video/${urlData}`)
             .then(res => {
                 if (res.ok) {
                     res.json().then(json => {
@@ -55,12 +27,12 @@ const Detail = (props) => {
                     console.log("Error: E01");
                 }
             })
-    }, [])
+    }
 
 
     // iframe src
     const findSrc = () => {
-        let iframeData = `${data.iframe}`
+        let iframeData = data.iframe ? data.iframe : ""
         let start = iframeData.indexOf(`src=`);
         let end = iframeData.indexOf(`'`, start + 5);
         let iframeSrc = iframeData.substring(start + 5, end);
@@ -68,9 +40,44 @@ const Detail = (props) => {
     }
 
 
-    {/* 뒤로가기 */ }
+    // go Back 
     const goBack = () => {
         window.history.back();
+    };
+
+
+    // Star Rating Data
+    const starRatingData = (e) => {
+        const index = e.target.value;
+        setRatingData(index);
+    };
+
+
+    // Video Complete
+    const videoComplete = async () => {
+        if (data.kind)
+            await fetch("http://54.180.123.156:8080/HTM/watch", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": userToken
+                },
+                body: JSON.stringify({
+                    id: data.id,
+                    time: `${data.time}`,
+                    kindId: data.kind.id,
+                    score: ratingData
+                }),
+            })
+                .then(res => {
+                    if (res.ok) {
+                        goBack()
+                    }
+                    else {
+                        console.log("Error: E02");
+                        console.log(res)
+                    }
+                })
     };
 
 
@@ -89,9 +96,10 @@ const Detail = (props) => {
             {/* 영상 */}
             <div className="embed-responsive embed-responsive-16by9 mb-5">
                 <iframe
+                    title={data.id}
                     src={findSrc()}
                     frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen={true}>
                 </iframe>
             </div>
@@ -112,7 +120,10 @@ const Detail = (props) => {
 
             {/** 시청완료 버튼 */}
             <div className="text-center">
-                <button className="btn btnDone" onClick={videoComplete}>시청완료</button>
+                {loginFlag ?
+                    <button className="btn btnDone" onClick={videoComplete}>시청완료</button> :
+                    <button className="btn btnDone" disabled>로그인 후 이용해 주세요</button>
+                }
             </div>
         </div>
     );

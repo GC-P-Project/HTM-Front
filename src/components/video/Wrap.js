@@ -7,9 +7,16 @@ const Wrap = (props) => {
     const [data, setData] = useState([])
     const [filteredData, setFilteredData] = useState([])
 
-    // call API
+
     useEffect(() => {
-        fetch(`http://54.180.123.156:8080/HTM/list/${urlData}`)
+        fetchData()
+        reset_animation()
+    }, [props.match.params.type])
+
+
+    // call API
+    const fetchData = async () => {
+        await fetch(`http://54.180.123.156:8080/HTM/list/${urlData}`)
             .then(res => {
                 if (res.ok) {
                     res.json().then(json => {
@@ -20,8 +27,7 @@ const Wrap = (props) => {
                     console.log("Error: E01");
                 }
             })
-        reset_animation()
-    }, [props.match.params.type])
+    }
 
 
     // animation
@@ -53,8 +59,8 @@ const Wrap = (props) => {
 
 
     // kindData
-    const kindList = [`전신`, `등`, `가슴`, `허리`, `어깨`, `하체`]
     const kindData = (obj) => {
+        let kindList = [`전신`, `등`, `가슴`, `허리`, `어깨`, `하체`]
         let result = ``
         kindList.map((v, i) => {
             if (obj.kind.id === i + 1)
@@ -97,7 +103,6 @@ const Wrap = (props) => {
                     </div>
                 </Link>
             ))}
-
         </div>
     );
 };

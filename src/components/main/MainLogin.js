@@ -173,7 +173,7 @@ const MainLogin = () => {
                         height="220"
                         src="https://www.youtube.com/embed/54tTYO-vU2E"
                         frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         title="YouTube"
                     ></iframe>
