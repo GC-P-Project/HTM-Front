@@ -66,7 +66,6 @@ function SignupWrap() {
                 }),
             })
                 .then(async (response) => {
-                    console.log(response);
                     alert("회원가입이 완료되었습니다.");
                 })
                 .catch((e) => {
