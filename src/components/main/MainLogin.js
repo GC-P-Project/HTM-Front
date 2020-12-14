@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
@@ -10,12 +10,10 @@ import EditIcon from "../../assets/icons/pen.svg";
 import StandingIcon from "../../assets/icons/main_standing.svg";
 
 const MainLogin = () => {
+    const tokeninfo = window.sessionStorage.getItem("token");
     const nameinfo = window.sessionStorage.getItem("nameinfo");
     const heightinfo = window.sessionStorage.getItem("heightinfo");
     const weightinfo = window.sessionStorage.getItem("weightinfo");
-    const upperinfo = window.sessionStorage.getItem("upperinfo");
-    const lowerinfo = window.sessionStorage.getItem("lowerinfo");
-    const allinfo = window.sessionStorage.getItem("allinfo");
 
     const uppervalue = "/list/upper";
     const lowervalue = "/list/lower";
@@ -25,24 +23,54 @@ const MainLogin = () => {
     const lowername = "[ 하체 ]";
     const allname = "[ 전신 ]";
 
-    const timevalue = ({ upperinfo, lowerinfo, allinfo }) => {
-        const workoutvalue = lowerinfo > upperinfo && allinfo > upperinfo ? upperinfo : lowerinfo > allinfo ? allinfo : lowerinfo;
-        if (workoutvalue === upperinfo) {
+    const [userupper, setUserupper] = useState([""]);
+    const [userlower, setUserlower] = useState([""]);
+    const [userall, setUserall] = useState([""]);
+
+    const fetchApi = async () => {
+        if (tokeninfo != null) {
+            const response = await fetch("http://54.180.123.156:8080/user/info", {
+                method: "GET",
+                headers: {
+                    "Authorization": tokeninfo,
+                    "Content-Type": "application/json",
+                },
+            }).then((response) => {
+                if (response.status === 200) {
+                    response.json().then((data) => {
+                        setUserupper(data.upperTime);
+                        setUserlower(data.lowerTime);
+                        setUserall(data.allTime);
+                    });
+                } else {
+                    console.log("server error");
+                }
+            });
+        }
+    };
+
+    useEffect(() => {
+        fetchApi();
+    }, []);
+
+    const timevalue = ({ userupper , userlower, userall }) => {
+        const workoutvalue = userlower > userupper && userall > userupper ? userupper : userlower > userall ? userall : userlower;
+        if (workoutvalue === userupper) {
             return uppervalue;
-        } else if (workoutvalue === lowerinfo) {
+        } else if (workoutvalue === userlower) {
             return lowervalue;
-        } else if (workoutvalue === allinfo) {
+        } else if (workoutvalue === userall) {
             return allvalue;
         }
     };
 
-    const recommandvalue = ({ upperinfo, lowerinfo, allinfo }) => {
-        const workoutvalue = lowerinfo > upperinfo && allinfo > upperinfo ? upperinfo : lowerinfo > allinfo ? allinfo : lowerinfo;
-        if (workoutvalue === upperinfo) {
+    const recommandvalue = ({ userupper , userlower, userall }) => {
+        const workoutvalue = userlower > userupper && userall > userupper ? userupper : userlower > userall ? userall : userlower;
+        if (workoutvalue === userupper) {
             return uppername;
-        } else if (workoutvalue === lowerinfo) {
+        } else if (workoutvalue === userlower) {
             return lowername;
-        } else if (workoutvalue === allinfo) {
+        } else if (workoutvalue === userall) {
             return allname;
         }
     };
@@ -133,13 +161,13 @@ const MainLogin = () => {
                         </StyledWatcingtime>
                         <StyledUserProgressbar>
                             <div>
-                                <span>ALL</span> <ProgressBar variant="blue" max="300" animated now={allinfo} label={`${allinfo}분`} />
+                                <span>ALL</span> <ProgressBar variant="blue" max="300" animated now={userall} label={`${userall}분`} />
                             </div>
                             <div>
-                                <span>UPPER</span> <ProgressBar variant="blue" max="300" animated now={upperinfo} label={`${upperinfo}분`} />
+                                <span>UPPER</span> <ProgressBar variant="blue" max="300" animated now={userupper} label={`${userupper}분`} />
                             </div>
                             <div>
-                                <span>LOWER</span> <ProgressBar variant="blue" max="300" animated now={lowerinfo} label={`${lowerinfo}분`} />
+                                <span>LOWER</span> <ProgressBar variant="blue" max="300" animated now={userlower} label={`${userlower}분`} />
                             </div>
                         </StyledUserProgressbar>
                     </StyledUserinfo>
@@ -152,11 +180,11 @@ const MainLogin = () => {
                 </StyledLastweekgraph>
                 <StyledRecommandTitle>
                     <p>
-                        오늘은 <span style={{ color: "#015cee" }}>{recommandvalue({ upperinfo, lowerinfo, allinfo })}</span> 운동을 하는 게 어떨까요?
+                        오늘은 <span style={{ color: "#015cee" }}>{recommandvalue({ userupper , userlower, userall })}</span> 운동을 하는 게 어떨까요?
                     </p>
                 </StyledRecommandTitle>
                 <StyledRecommandButton>
-                    <Link to={timevalue({ upperinfo, lowerinfo, allinfo })}>
+                    <Link to={timevalue({ userupper , userlower, userall })}>
                         <Button variant="outline-primary" size="lg">
                             부족한 운동 부위 추천 영상 보러 가기
                         </Button>
