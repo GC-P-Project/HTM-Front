@@ -100,5 +100,6 @@ a:hover{
     box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.151);
 }
 .btnDone:hover{
-    background-color: #f7f7f7;
+    background-color: #2786c50f;
+    transition: ease-in 0.3s;
 }

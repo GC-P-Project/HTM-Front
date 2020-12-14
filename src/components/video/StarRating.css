@@ -47,7 +47,7 @@
     padding: 16px;
 }
 .starBox:hover{
-    box-shadow: 0 0 5px 0 #2786c5aa;
+    box-shadow: 0 0 6px 0 #2786c5bb;
 }
 .starBox p{
     font-weight: bold;
