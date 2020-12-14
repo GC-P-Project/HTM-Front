@@ -11,13 +11,13 @@ const MainLogin = () => {
     const nameinfo = window.sessionStorage.getItem("nameinfo");
     const heightinfo = window.sessionStorage.getItem("heightinfo");
     const weightinfo = window.sessionStorage.getItem("weightinfo");
-    const upperinfo = window.sessionStorage.getItem("/list/upper");
-    const lowerinfo = window.sessionStorage.getItem("/list/lower");
-    const allinfo = window.sessionStorage.getItem("/list/all");
+    const upperinfo = window.sessionStorage.getItem("upperinfo");
+    const lowerinfo = window.sessionStorage.getItem("lowerinfo");
+    const allinfo = window.sessionStorage.getItem("allinfo");
 
-    const uppervalue =  window.sessionStorage.key(0);
-    const lowervalue =  window.sessionStorage.key(3);
-    const allvalue =  window.sessionStorage.key(6);
+    const uppervalue =  "/list/upper"
+    const lowervalue =  "/list/lower"
+    const allvalue =  "/list/all"
 
     const uppername = "[ 상체 ]";
     const lowername = "[ 하체 ]";
@@ -50,7 +50,7 @@ const MainLogin = () => {
             <StyledMainlogin>
                 <div>
                     <StyledStandingIcon>
-                        <img src={StandingIcon} alt="Lying down Icon" width="160px"></img>
+                        <img src={StandingIcon} alt="Lying down Icon" width="120px"></img>
                     </StyledStandingIcon>
                     <StyledUserinfo>
                         <StyledUsername>
@@ -81,6 +81,9 @@ const MainLogin = () => {
                         </StyledUserProgressbar>
                     </StyledUserinfo>
                 </div>
+                <StyledLastweekgraph>
+
+                </StyledLastweekgraph>
                 <StyledRecommandTitle>
                     <p>
                         오늘은 <strong>{recommandvalue({upperinfo, lowerinfo, allinfo})}</strong> 운동을 하는 게 어떨까요?
@@ -118,6 +121,7 @@ const StyledMainlogin = styled.div`
     background-color: #f0f7fe;
     border-radius: 50px;
     padding-bottom: 40px;
+    margin: 10px;
 
     & > div {
         display: flex;
@@ -196,6 +200,10 @@ const StyledUserProgressbar = styled.div`
     & > div {
         margin: 1rem;
     }
+`;
+
+const StyledLastweekgraph = styled.div`
+
 `;
 
 const StyledRecommandTitle = styled.div`

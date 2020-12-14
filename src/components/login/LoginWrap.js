@@ -94,9 +94,9 @@ function LoginWrap() {
                     sessionSave("nameinfo", nameinfo);
                     sessionSave("heightinfo", heightinfo);
                     sessionSave("weightinfo", weightinfo);
-                    sessionSave("/list/upper", upperinfo);
-                    sessionSave("/list/lower", lowerinfo);
-                    sessionSave("/list/all", allinfo);
+                    sessionSave("upperinfo", upperinfo);
+                    sessionSave("lowerinfo", lowerinfo);
+                    sessionSave("allinfo", allinfo);
                 })
                 .then(() => {
                     alert("로그인에 성공하셨습니다.");

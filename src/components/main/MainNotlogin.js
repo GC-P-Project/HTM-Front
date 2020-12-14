@@ -54,6 +54,7 @@ const StyledMainnotlogin = styled.div`
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     padding-bottom: 50px;
+    margin: 10px;
 `;
 
 const StyledMainIcon = styled.div`
