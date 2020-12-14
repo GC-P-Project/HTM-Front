@@ -44,31 +44,39 @@ function SignupWrap() {
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
     const [gender, setGender] = useState("");
-    const [addressType, setAddresstype] = useState("NORMAL");
 
     const signOk = async () => {
-        const response = await fetch("http://54.180.123.156:8080/user/signUp", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password,
-                age: age,
-                name: name,
-                height: height,
-                weight: weight,
-                gender: gender,
-                addressType: addressType,
-            }),
-        })
-            .then(async (response) => {
-                alert("회원가입이 완료되었습니다.");
+        if (email && password !== "") {
+            const response = await fetch("http://54.180.123.156:8080/user/signUp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    user: {
+                        email: email,
+                        password: password,
+                        age: age,
+                        name: name,
+                        height: height,
+                        weight: weight,
+                        gender: gender,
+                        addressType: "NORMAL",
+                    },
+                }),
             })
-            .catch((e) => {
-                alert("회원가입에 실패하였습니다.");
-            });
+                .then(async (response) => {
+                    console.log(response);
+                    alert("회원가입이 완료되었습니다.");
+                })
+                .catch((e) => {
+                    console.log(e);
+                    alert("회원가입에 실패하였습니다.");
+                });
+            return response;
+        } else {
+            alert("Email&Password를 입력해 주세요.");
+        }
     };
 
     const changeInput = (e) => {
@@ -134,7 +142,7 @@ function SignupWrap() {
                                 <TextField variant="standard" required fullWidth id="weight" label="Weight (kg)" name="weight" autoComplete="weight" InputAdornment="Kg" onChange={changeInput} />
                             </Grid>
                             <Grid item xs={4}>
-                                <TextField variant="standard" required fullWidth id="gender" label="MALE/FEMALE" name="gender" autoComplete="gender" />
+                                <TextField variant="standard" required fullWidth id="gender" label="MALE/FEMALE" name="gender" autoComplete="gender" onChange={changeInput} />
                             </Grid>
                         </Grid>
                         <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={dataSubmit}>
