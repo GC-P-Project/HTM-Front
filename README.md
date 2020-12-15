@@ -1,4 +1,4 @@
-# [HTM - Home Training Manager](https://gchtm.s3.ap-northeast-2.amazonaws.com/index.html#/)
+# [HTM - Home Training Manager](http://gchtm.s3.ap-northeast-2.amazonaws.com/index.html#/)
 
 🏃‍♀️🏃‍♂️ ML 기반의 개인 맞춤 홈 트레이닝 관리 웹 서비스입니다.
 
@@ -46,4 +46,4 @@
 
 ### :link: URL
 
-- [HTM 바로가기](https://gchtm.s3.ap-northeast-2.amazonaws.com/index.html#/)
+- [HTM 바로가기](http://gchtm.s3.ap-northeast-2.amazonaws.com/index.html#/)
