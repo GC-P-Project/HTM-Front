@@ -5,8 +5,10 @@
 
 html {
     background-color: #f9f9f9;
+    height: 100%;
 }
 
 body {
     background-color: #fff;
+    min-height: 100%;
 }
