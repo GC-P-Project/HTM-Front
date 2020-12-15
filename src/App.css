@@ -2,3 +2,12 @@
     max-width: 500px;
     margin: 0 auto;
 }
+
+html {
+    background-color: #f9f9f9;
+}
+
+body {
+    background-color: #fff;
+    min-height: 100%;
+}
