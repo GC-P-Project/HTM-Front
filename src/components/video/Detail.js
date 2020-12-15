@@ -71,6 +71,7 @@ const Detail = (props) => {
             })
                 .then(res => {
                     if (res.ok) {
+                        alert("시청 데이터가 기록되었습니다.");
                         goBack()
                     }
                     else {

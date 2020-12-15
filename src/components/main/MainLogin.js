@@ -161,13 +161,13 @@ const MainLogin = () => {
                         </StyledWatcingtime>
                         <StyledUserProgressbar>
                             <div>
-                                <span>ALL</span> <ProgressBar variant="blue" max="100" animated now={userall} label={`${userall}분`} />
+                                <span>ALL</span> <ProgressBar variant="blue" max="120" animated now={userall} label={`${userall}분`} />
                             </div>
                             <div>
-                                <span>UPPER</span> <ProgressBar variant="blue" max="100" animated now={userupper} label={`${userupper}분`} />
+                                <span>UPPER</span> <ProgressBar variant="blue" max="120" animated now={userupper} label={`${userupper}분`} />
                             </div>
                             <div>
-                                <span>LOWER</span> <ProgressBar variant="blue" max="100" animated now={userlower} label={`${userlower}분`} />
+                                <span>LOWER</span> <ProgressBar variant="blue" max="120" animated now={userlower} label={`${userlower}분`} />
                             </div>
                         </StyledUserProgressbar>
                     </StyledUserinfo>
@@ -200,6 +200,17 @@ const MainLogin = () => {
                         width="400"
                         height="220"
                         src="https://www.youtube.com/embed/54tTYO-vU2E"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title="YouTube"
+                    ></iframe>
+                </StyledTodayInfo>
+                <StyledTodayInfo>
+                    <iframe
+                        width="400"
+                        height="220"
+                        src="https://www.youtube.com/embed/GQ_Dt7_Jfk8"
                         frameBorder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
