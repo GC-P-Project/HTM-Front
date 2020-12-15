@@ -42,6 +42,7 @@ const Detail = (props) => {
 
     // go Back 
     const goBack = () => {
+        alert("시청 데이터가 기록되었습니다.");
         window.history.back();
     };
 
