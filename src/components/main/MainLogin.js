@@ -161,13 +161,13 @@ const MainLogin = () => {
                         </StyledWatcingtime>
                         <StyledUserProgressbar>
                             <div>
-                                <span>ALL</span> <ProgressBar variant="blue" max="300" animated now={userall} label={`${userall}분`} />
+                                <span>ALL</span> <ProgressBar variant="blue" max="100" animated now={userall} label={`${userall}분`} />
                             </div>
                             <div>
-                                <span>UPPER</span> <ProgressBar variant="blue" max="300" animated now={userupper} label={`${userupper}분`} />
+                                <span>UPPER</span> <ProgressBar variant="blue" max="100" animated now={userupper} label={`${userupper}분`} />
                             </div>
                             <div>
-                                <span>LOWER</span> <ProgressBar variant="blue" max="300" animated now={userlower} label={`${userlower}분`} />
+                                <span>LOWER</span> <ProgressBar variant="blue" max="100" animated now={userlower} label={`${userlower}분`} />
                             </div>
                         </StyledUserProgressbar>
                     </StyledUserinfo>
