@@ -110,6 +110,12 @@ function SignupWrap() {
         }
     };
 
+    const enterKey = () => {
+        if (window.event.keyCode === 13) {
+            dataSubmit();
+        }
+    };
+
     return (
         <MuiThemeProvider theme={backgroundTheme}>
             <Container component="main" maxWidth="xs">
@@ -120,7 +126,7 @@ function SignupWrap() {
                     <Typography component="h1" variant="h5">
                         Sign Up
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} noValidate onKeyUp={enterKey}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField variant="standard" required fullWidth id="email" label="Email" name="email" autoComplete="email" onChange={changeInput} />
@@ -144,7 +150,7 @@ function SignupWrap() {
                                 <TextField variant="standard" required fullWidth id="gender" label="MALE/FEMALE" name="gender" autoComplete="gender" onChange={changeInput} />
                             </Grid>
                         </Grid>
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={dataSubmit}>
+                        <Button fullWidth variant="contained" color="primary" className={classes.submit} onClick={dataSubmit}>
                             SIGN UP
                         </Button>
                         <Grid container justify="flex-end">
