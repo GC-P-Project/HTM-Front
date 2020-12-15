@@ -144,7 +144,7 @@ function SignupWrap() {
                                 <TextField variant="standard" required fullWidth id="gender" label="MALE/FEMALE" name="gender" autoComplete="gender" onChange={changeInput} />
                             </Grid>
                         </Grid>
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={dataSubmit}>
+                        <Button fullWidth variant="contained" color="primary" className={classes.submit} onClick={dataSubmit}>
                             SIGN UP
                         </Button>
                         <Grid container justify="flex-end">

@@ -130,7 +130,7 @@ function LoginWrap() {
                             autoComplete="password"
                             onChange={changeInput}
                         />
-                        <Button variant="contained" type="submit" fullWidth color="primary" className={classes.submit} onClick={LoginSubmit}>
+                        <Button variant="contained"  fullWidth color="primary" className={classes.submit} onClick={LoginSubmit}>
                             SIGN IN
                         </Button>
                         <Grid container>
