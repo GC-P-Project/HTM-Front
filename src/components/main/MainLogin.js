@@ -206,6 +206,17 @@ const MainLogin = () => {
                         title="YouTube"
                     ></iframe>
                 </StyledTodayInfo>
+                <StyledTodayInfo>
+                    <iframe
+                        width="400"
+                        height="220"
+                        src="https://www.youtube.com/embed/GQ_Dt7_Jfk8"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title="YouTube"
+                    ></iframe>
+                </StyledTodayInfo>
             </StyledTodayvideo>
         </>
     );

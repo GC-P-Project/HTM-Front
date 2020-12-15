@@ -29,7 +29,7 @@ const Footer = () => {
     return (
         <MuiThemeProvider theme={backgroundTheme}>
             <Container component="main" maxWidth="xs">
-                <Box mt={5}>
+                <Box mt={5} mb={3}>
                     <Copyright />
                 </Box>
             </Container>
