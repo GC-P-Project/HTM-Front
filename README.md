@@ -1,4 +1,13 @@
-# [HTM - Home Training Manager](http://gchtm.s3.ap-northeast-2.amazonaws.com/index.html#/)
+<p align="center">
+  <a href="https://github.com/mnxmnz/HTM-Front">
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbveuv8%2FbtqQps6md8g%2Fk1tANMK8CgQnspmj428590%2Fimg.png" alt="Logo" width="100" height="100">
+  </a>
+
+  <h2 align="center"><a href="http://gchtm.s3.ap-northeast-2.amazonaws.com/index.html#/">Home Training Manager</a>
+</h2>
+</p>
+
+## 📑 프로젝트 소개
 
 🏃‍♀️🏃‍♂️ ML 기반의 개인 맞춤 홈 트레이닝 관리 웹 서비스입니다.
 
@@ -44,6 +53,39 @@
 | --- | --- | --- | --- | --- | --- |
 | JavaScript<br>React | Python<br>Spring Boot | MySQL | AWS S3 | AWS EC2 | Git<br>Photoshop |
 
-### :link: URL
+## 🖥 Local 실행 방법
+
+#### Yarn 설치
+
+[Yarn 설치 바로가기](https://classic.yarnpkg.com/en/docs/install#windows-stable)
+
+#### Clone the Repo
+
+```sh
+git clone https://github.com/mnxmnz/HTM-Front.git
+```
+
+#### Install Packages
+
+```sh
+yarn
+```
+
+## 🎞 실행 화면
+
+#### 사용자 로그인 전 메인 화면 및 로그인 이후 메인 화면
+
+#### 로그인 한 사용자에게 개인 맞춤 정보 제공
+
+<img src="https://drive.google.com/uc?export=view&id=1HRzMr0MRUxCEg7fPv37ZZ-zxdzYt0yOa" alt="usertest1" >
+
+#### 로그인 한 사용자가 영상 시청을 완료했을 때 추천 영상 변경 
+
+#### 메인 페이지 하단 추천 영상은 사용자의 운동 평점 정보에 따라 ML 기반으로 다음 추천 운동 영상 제공
+
+<img src="https://drive.google.com/uc?export=view&id=1tEA_psQ2kBblKI9jzjfosfnVcgnFCe0A" alt="usertest2" >
+
+
+## :link: URL
 
 - [HTM 바로가기](http://gchtm.s3.ap-northeast-2.amazonaws.com/index.html#/)
