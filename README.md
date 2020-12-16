@@ -71,6 +71,12 @@ git clone https://github.com/mnxmnz/HTM-Front.git
 yarn
 ```
 
+#### Run the Project
+
+```sh
+yarn start
+```
+
 ## 🎞 실행 화면
 
 #### 사용자 로그인 전 메인 화면 및 로그인 이후 메인 화면
