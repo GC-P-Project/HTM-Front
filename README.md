@@ -105,6 +105,13 @@ yarn start
 
 <img src="https://drive.google.com/uc?export=view&id=1SrZhxNvIReh_2bWSfvBLAuSW0dNweHu2" alt="img3" >
 
+
+## 💻 개발자
+
+| <img src="https://avatars1.githubusercontent.com/u/48766355?s=460&u=0419d273d1a31539ee4f1151cdacb6fefd45dacc&v=4" width="105" height="105"><br>[김민지](https://github.com/mnxmnz) | <img src="https://avatars0.githubusercontent.com/u/71953870?s=460&v=4" width="105" height="105"><br>[황연수](https://github.com/hwang-yeonsu) |
+| --- | --- |
+
+
 ## :link: URL
 
 - [HTM 바로가기](http://gchtm.s3.ap-northeast-2.amazonaws.com/index.html#/)
