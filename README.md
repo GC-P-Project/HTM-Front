@@ -89,7 +89,7 @@ yarn start
 
 #### [1-1] 로그인 한 사용자에게 개인 맞춤 정보 제공
 
-<img src="https://drive.google.com/uc?export=view&id=1HRzMr0MRUxCEg7fPv37ZZ-zxdzYt0yOa" alt="usertest1" >
+<img src="https://drive.google.com/uc?export=view&id=1HRzMr0MRUxCEg7fPv37ZZ-zxdzYt0yOa" alt="img1" >
 
 #### [2] 로그인 한 사용자에게 추천 운동 영상 제공
 
@@ -97,13 +97,13 @@ yarn start
 
 #### [2-2] 메인 페이지 하단 추천 영상은 사용자의 운동 평점 정보에 따라 ML 기반으로 다음 추천 운동 영상 제공
 
-<img src="https://drive.google.com/uc?export=view&id=1tEA_psQ2kBblKI9jzjfosfnVcgnFCe0A" alt="usertest2" >
+<img src="https://drive.google.com/uc?export=view&id=1tEA_psQ2kBblKI9jzjfosfnVcgnFCe0A" alt="img2" >
 
 #### [3] 운동 부위 별 영상 시청 페이지
 
 #### [3-1] 회원가입을 진행하지 않은 사용자도 영상 시청 가능
 
-<img src="https://drive.google.com/uc?export=view&id=1SrZhxNvIReh_2bWSfvBLAuSW0dNweHu2" alt="usertest2" >
+<img src="https://drive.google.com/uc?export=view&id=1SrZhxNvIReh_2bWSfvBLAuSW0dNweHu2" alt="img3" >
 
 ## :link: URL
 
