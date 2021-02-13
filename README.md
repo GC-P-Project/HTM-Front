@@ -61,8 +61,7 @@ src
  ┣ assets
  ┃ ┗ icons
  ┃ ┃ ┣ logo.png
- ┃ ┃ ┣ main_lying.svg
- ┃ ┃ ┣ main_standing.svg
+ ┃ ┃ ┣ ...
  ┃ ┃ ┗ pen.svg
  ┣ components
  ┃ ┣ login
@@ -75,8 +74,7 @@ src
  ┃ ┃ ┗ SignupWrap.js
  ┃ ┗ video
  ┃ ┃ ┣ Detail.js
- ┃ ┃ ┣ StarRating.css
- ┃ ┃ ┣ Video.css
+ ┃ ┃ ┣ ...
  ┃ ┃ ┗ Wrap.js
  ┣ pages
  ┃ ┣ Content.js
